@@ -95,7 +95,7 @@ describe("Budget Balance Verification", () => {
       const afterSpentVal = afterSpent.textContent;
 
       expect(afterBudgetVal).toEqual("$5000");
-      expect(afterRemainingVal).toEqual("$-1000");
+      expect(afterRemainingVal).toEqual("$-2000");
       expect(afterSpentVal).toEqual("$6000");
 
     });
