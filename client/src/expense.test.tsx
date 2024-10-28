@@ -24,7 +24,7 @@ describe("ExpenseItem", () => {
     });
 });
 
-describe("ExpenseItem", () => {
+describe("ExpenseItem 2", () => {
     test("should delete the expense item when delete button is clicked", () => {
       render(
         <App/>

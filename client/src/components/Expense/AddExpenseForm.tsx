@@ -7,32 +7,37 @@ const AddExpenseForm = () => {
   // Exercise: Consume the AppContext here
   const {expenses, setExpenses} = useContext(AppContext);
   // Exercise: Create name and cost to state variables
-  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [cost, setCost] = useState<number>(0);
   
   
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Exercise: Add add new expense to expenses context array
     const new_id = uuidv4();
-    createExpense({id:new_id, name:name, cost:cost}); 
-    setExpenses([...expenses, {id:new_id, name:name, cost:cost}])
+    try {
+      await createExpense({id:new_id, cost:cost, description:description }); 
+      setExpenses([...expenses, {id:new_id, description:description, cost:cost}]);
+    } catch (error) {
+      console.error("Failed to create expense", error);
+    }
+    
   };
 
   return (
     <form onSubmit={(event) => onSubmit(event)}>
       <div className="row">
         <div className="col-sm">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="description">Description</label>
           <input
             required
             type="text"
             className="form-control"
-            id="name"
-            value={name}
+            id="description"
+            value={description}
             // HINT: onChange={}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => setDescription(event.target.value)}
           ></input>
         </div>
         <div className="col-sm">
