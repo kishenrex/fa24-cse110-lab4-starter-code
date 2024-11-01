@@ -19,7 +19,6 @@ export function createExpenseServer(req: Request, res: Response, expenses: Expen
 }
 
 export function deleteExpense(req: Request, res: Response, expenses: Expense[]) {
-    // TO DO: Implement deleteExpense function
     const { id } = req.params;
     console.log("request params is " + req.params);
     console.log("request method is " + req.method);
