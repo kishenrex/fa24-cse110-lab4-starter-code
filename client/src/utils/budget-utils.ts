@@ -17,3 +17,20 @@ export const fetchBudget = async (): Promise<number> => {
 	console.log("response in fetchBudget", budget);
 	return budget;
 };
+
+export const updateBudget = async (budgetAmount: number): Promise<number> => {
+    const response = await fetch(`${API_BASE_URL}/budget`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ amount: budgetAmount }),
+    });
+  
+    if (!response.ok) {
+      throw new Error('Failed to update budget');
+    }
+  
+    const jsonResponse = await response.json();
+    return jsonResponse.data.amount;
+};
